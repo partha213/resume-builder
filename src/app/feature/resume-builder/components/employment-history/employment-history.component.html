@@ -1,0 +1,35 @@
+<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio sit praesentium odit voluptatum tenetur laborum inventore eveniet minus! Minima iure eligendi harum libero voluptatem inventore a eaque iste? Cupiditate, ad?</p>
+
+<div [formGroup]="primaryForm">
+    <div formArrayName="employment">
+
+        <mat-card *ngFor="let emp of empArr.controls; let i=index">
+            <mat-card-header>
+                <button mat-icon-button aria-label="Add" (click)="removeEmployment(i)">
+                    <mat-icon>clear</mat-icon>
+                </button>
+            </mat-card-header>
+            <div class="form-container" [formGroup]="formGrp(emp)">
+                <mat-form-field appearance="outline">
+                    <mat-label>Job Description</mat-label>
+                    <input matInput formControlName="role">
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>Employment Organization</mat-label>
+                    <input matInput formControlName="organization">
+                </mat-form-field>
+            </div>
+            </mat-card>
+
+    </div>
+    <br/>
+    <div class="footer">
+        <button mat-raised-button color="primary" aria-label="Add" (click)="addEmployment()">
+            <mat-icon>add</mat-icon>
+            Add Employment
+        </button>
+    </div>
+    
+
+</div>
+

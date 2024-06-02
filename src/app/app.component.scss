@@ -1,0 +1,19 @@
+.container{
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.main-content{
+    padding: 20px;
+    margin: auto;
+    max-width: 1000px;
+    flex: 1 1 auto;
+}
+
+.main-header{
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}

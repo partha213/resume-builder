@@ -1,0 +1,20 @@
+<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dignissimos quia quaerat pariatur a, eaque voluptatem voluptas. Nulla, fugit culpa inventore odit eum perferendis cupiditate nam cum quod quidem ipsa doloribus!</p>
+
+<mat-form-field appearance="outline">
+    <mat-label>Personal Interest</mat-label>
+    <input  matInput [(ngModel)]="interest">
+    <button matSuffix mat-icon-button aria-label="Add" (click)="addInterest()">
+        <mat-icon>add</mat-icon>
+    </button>
+    <mat-hint>Add personal interest</mat-hint>
+</mat-form-field>
+<br/>
+<mat-chip-list>
+    <mat-chip *ngFor="let int of interestList.values()" color="primary" selected>
+
+            {{int}}
+            <mat-icon (click)="removeInterest(int)">close</mat-icon>
+    </mat-chip>
+</mat-chip-list>
+
+
