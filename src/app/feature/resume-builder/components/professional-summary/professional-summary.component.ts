@@ -1,5 +1,5 @@
 import { Component, forwardRef, OnInit } from '@angular/core';
-import { ControlValueAccessor, FormControl, FormGroup, NG_VALUE_ACCESSOR, Validators } from '@angular/forms';
+import { ControlValueAccessor, FormControl, FormGroup, NG_VALIDATORS, NG_VALUE_ACCESSOR, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-professional-summary',
@@ -8,6 +8,11 @@ import { ControlValueAccessor, FormControl, FormGroup, NG_VALUE_ACCESSOR, Valida
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => ProfessionalSummaryComponent),
+      multi: true
+    },
+    {
+      provide: NG_VALIDATORS,
       useExisting: forwardRef(() => ProfessionalSummaryComponent),
       multi: true
     }
@@ -38,11 +43,15 @@ export class ProfessionalSummaryComponent implements OnInit, ControlValueAccesso
   }
 
   updateValue(){
-    if(this.profSummaryForm.valid){
-      this.onChange(this.profSummaryForm.value);
-    }
+    this.onChange(this.profSummaryForm.value);
     this.onTouched();
-    
+  }
+
+  validate() {
+    const isNotValid = !(this.profSummaryForm.valid);
+    return isNotValid && {
+      invalid: true
+    }
   }
 
   constructor() { }

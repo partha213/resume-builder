@@ -13,6 +13,10 @@
 }
 
 .main-header{
+    margin: auto;
+    max-width: 1200px;
+    width: 100%;
+    flex: 1 1 auto;
     position: sticky;
     top: 0;
     z-index: 100;

@@ -1,5 +1,5 @@
 import { Component, forwardRef, OnInit } from '@angular/core';
-import { ControlValueAccessor, FormArray, FormControl, FormGroup, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { ControlValueAccessor, FormArray, FormControl, FormGroup, NG_VALUE_ACCESSOR, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-employment-history',
@@ -40,16 +40,18 @@ export class EmploymentHistoryComponent implements OnInit, ControlValueAccessor 
   }
 
   primaryForm = new FormGroup({
-    employment: new FormArray([new FormGroup({
-      role: new FormControl(''),
-      organization: new FormControl('')
-    })])
+    employment: new FormArray([])
   }); 
 
-  employmentForm = new FormGroup({
-    role: new FormControl(''),
-    organization: new FormControl('')
-  })
+  get employmentForm(){
+    return new FormGroup({
+      role: new FormControl('',[Validators.required]),
+      organization: new FormControl('',[Validators.required]),
+      startDate: new FormControl('',[Validators.required]),
+      endDate: new FormControl('')
+    })
+
+  } 
 
   constructor() { }
 

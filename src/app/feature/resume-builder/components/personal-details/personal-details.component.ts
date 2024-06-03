@@ -1,5 +1,5 @@
 import { Component, forwardRef, OnInit } from '@angular/core';
-import { ControlValueAccessor, FormControl, FormGroup, NG_VALUE_ACCESSOR, Validators } from '@angular/forms';
+import { ControlValueAccessor, FormControl, FormGroup, NG_VALIDATORS, NG_VALUE_ACCESSOR, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-personal-details',
@@ -8,6 +8,11 @@ import { ControlValueAccessor, FormControl, FormGroup, NG_VALUE_ACCESSOR, Valida
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => PersonalDetailsComponent),
+      multi: true
+    },
+    {
+      provide: NG_VALIDATORS,
       useExisting: forwardRef(() => PersonalDetailsComponent),
       multi: true
     }
@@ -29,6 +34,13 @@ export class PersonalDetailsComponent implements OnInit, ControlValueAccessor {
   writeValue(obj: any): void {
     // this.personalForm.setValue(obj.personalInfo, { emitEvent: false });
     // this.additionalForm.setValue(obj.additionalInfo, { emitEvent: false });
+  }
+
+  validate() {
+    const isNotValid = !(this.personalForm.valid && this.additionalForm.valid);
+    return isNotValid && {
+      invalid: true
+    }
   }
 
   updateValue(){
@@ -67,4 +79,6 @@ export class PersonalDetailsComponent implements OnInit, ControlValueAccessor {
     this.additionalForm.valueChanges.subscribe((data)=>{this.updateValue()})
   }
 
+    
+  
 }

@@ -18,6 +18,18 @@
                     <mat-label>Employment Organization</mat-label>
                     <input matInput formControlName="organization">
                 </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>Start Date</mat-label>
+                    <input matInput [matDatepicker]="sDatePicker" formControlName="startDate">
+                    <mat-datepicker-toggle matSuffix [for]="sDatePicker"></mat-datepicker-toggle>
+                    <mat-datepicker #sDatePicker></mat-datepicker>
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>End Date</mat-label>
+                    <input matInput [matDatepicker]="eDatePicker" formControlName="endDate">
+                    <mat-datepicker-toggle matSuffix [for]="eDatePicker"></mat-datepicker-toggle>
+                    <mat-datepicker #eDatePicker></mat-datepicker>
+                </mat-form-field>
             </div>
             </mat-card>
 

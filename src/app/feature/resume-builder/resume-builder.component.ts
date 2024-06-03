@@ -11,68 +11,19 @@ import { debounceTime } from 'rxjs/operators';
 export class ResumeBuilderComponent implements OnInit {
 
   resumeForm = new FormGroup({
-    personalDetails:  new FormControl('',[Validators.required]),
-    professionalSummary: new FormControl('',[Validators.required]),
+    personalDetails:  new FormControl(''),
+    professionalSummary: new FormControl(''),
     employmentHistory: new FormControl(''),
     personalInterest: new FormControl('')
   });
-
-  // sectionConfig=[
-  //   {
-  //     header: "Personal Details",
-  //     tag: "app-personal-details",
-  //     icon: "account_circle"
-  //   },
-  //   {
-  //     header: "Professional Summary",
-  //     tag: "app-professional-summary",
-  //     icon: "business_center"
-  //   },
-  //   {
-  //     header: "Employment History",
-  //     tag: "app-employment-history",
-  //     icon: "account_circle"
-  //   },
-  //   {
-  //     header: "Personal Interest",
-  //     tag: "app-personal-interest",
-  //     icon: "account_circle"
-  //   }
-  // ];
-
-
-  sectionConfig=[
-      {
-        header: "Personal Details",
-        control: "personalDetails",
-        icon: "account_circle"
-      },
-      {
-        header: "Professional Summary",
-        control: "professionalSummary",
-        icon: "business_center"
-      }
-  ]
-
   constructor() { }
 
   ngOnInit(): void {
-    this.resumeForm.valueChanges.pipe(debounceTime(1000)).subscribe((data)=>{console.log(data)})
+    this.resumeForm.valueChanges.pipe(debounceTime(1000)).subscribe((data)=>{
+      localStorage.setItem('resumeData',JSON.stringify(data));
+      console.log(localStorage.getItem('resumeData'));
+    })
   }
-
-    step = 0;
-  
-    setStep(index: number) {
-      this.step = index;
-    }
-  
-    nextStep() {
-      this.step++;
-    }
-  
-    prevStep() {
-      this.step--;
-    }
 
 }
 

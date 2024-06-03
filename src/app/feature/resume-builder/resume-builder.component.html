@@ -1,6 +1,35 @@
 <div class="resume-container" >
     <form [formGroup]="resumeForm">
         <mat-stepper orientation="vertical" linear="true" #stepper>
+            
+            <mat-step [stepControl]="this.resumeForm.controls.personalDetails">
+                <ng-template matStepLabel>
+                    <div class="label">
+                        <span>Personal Details</span> 
+                        <mat-icon *ngIf="this.resumeForm.controls.personalDetails.valid">check_circle</mat-icon>
+                    </div>
+                </ng-template>
+                <app-personal-details formControlName="personalDetails"></app-personal-details>
+                <br/>
+                <div class="step-action">
+                    <button  mat-raised-button color="primary" matStepperNext>Next</button>
+                </div>
+            </mat-step>
+            <mat-step [stepControl]="this.resumeForm.controls.professionalSummary">
+                <ng-template matStepLabel>
+                    
+                    <div class="label">
+                        <span>Professional Summary</span> 
+                        <mat-icon *ngIf="this.resumeForm.controls.professionalSummary.valid">check_circle</mat-icon>
+                    </div>
+                </ng-template>
+                <app-professional-summary formControlName="professionalSummary"></app-professional-summary>
+                <br/>
+                <div class="step-action">
+                    <button  mat-raised-button matStepperPrevious>Back</button>
+                    <button  mat-raised-button color="primary" matStepperNext>Next</button>
+                </div>
+            </mat-step>
             <mat-step [stepControl]="this.resumeForm.controls.employmentHistory">
                 <ng-template matStepLabel>Employment History</ng-template>
                 <app-employment-history formControlName="employmentHistory"></app-employment-history>
@@ -10,24 +39,6 @@
                     <button  mat-raised-button color="primary" matStepperNext>Next</button>
                 </div>
             </mat-step>
-            <mat-step [stepControl]="this.resumeForm.controls.personalDetails">
-                <ng-template matStepLabel>Personal Details</ng-template>
-                <app-personal-details formControlName="personalDetails"></app-personal-details>
-                <br/>
-                <div class="step-action">
-                    <button  mat-raised-button color="primary" matStepperNext>Next</button>
-                </div>
-            </mat-step>
-            <mat-step [stepControl]="this.resumeForm.controls.professionalSummary">
-                <ng-template matStepLabel>Professional Summary</ng-template>
-                <app-professional-summary formControlName="professionalSummary"></app-professional-summary>
-                <br/>
-                <div class="step-action">
-                    <button  mat-raised-button matStepperPrevious>Back</button>
-                    <button  mat-raised-button color="primary" matStepperNext>Next</button>
-                </div>
-            </mat-step>
-            
             <mat-step [stepControl]="this.resumeForm.controls.personalInterest">
                 <ng-template matStepLabel>Personal Interest</ng-template>
                 <app-personal-interest formControlName="personalInterest"></app-personal-interest>
@@ -36,10 +47,7 @@
                     <button  mat-raised-button matStepperPrevious>Back</button>
                     <button  mat-raised-button color="primary" matStepperNext>Next</button>
                 </div>
-            </mat-step>
-
-            
-           
+            </mat-step>  
         </mat-stepper>
 
     </form>
