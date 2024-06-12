@@ -11,10 +11,7 @@
 <br/>
 <mat-chip-list>
     <mat-chip *ngFor="let int of interestList.values()" color="primary" selected>
-
             {{int}}
             <mat-icon (click)="removeInterest(int)">close</mat-icon>
     </mat-chip>
 </mat-chip-list>
-
-

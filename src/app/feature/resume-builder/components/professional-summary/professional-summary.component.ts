@@ -38,8 +38,9 @@ export class ProfessionalSummaryComponent implements OnInit, ControlValueAccesso
   }
 
   writeValue(obj: any): void {
-    // this.personalForm.setValue(obj.personalInfo, { emitEvent: false });
-    // this.additionalForm.setValue(obj.additionalInfo, { emitEvent: false });
+    if(obj){
+      this.profSummaryForm.setValue(obj, { emitEvent: false });
+    }
   }
 
   updateValue(){

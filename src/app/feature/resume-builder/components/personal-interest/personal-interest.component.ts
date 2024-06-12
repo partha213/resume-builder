@@ -1,5 +1,5 @@
 import { Component, forwardRef, OnInit } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { ControlValueAccessor, NG_VALIDATORS, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
   selector: 'app-personal-interest',
@@ -8,6 +8,11 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => PersonalInterestComponent),
+      multi: true
+    },
+    {
+      provide: NG_VALIDATORS,
       useExisting: forwardRef(() => PersonalInterestComponent),
       multi: true
     }
@@ -32,12 +37,19 @@ export class PersonalInterestComponent implements OnInit, ControlValueAccessor {
   }
 
   writeValue(obj: any): void {
-    // this.personalForm.setValue(obj.personalInfo, { emitEvent: false });
-    // this.additionalForm.setValue(obj.additionalInfo, { emitEvent: false });
+    this.interestList = new Set(obj);
+   
+  }
+
+  validate() {
+    const isNotValid = !(this.interestList.size > 0) ;
+    return isNotValid && {
+      invalid: true
+    }
   }
 
   updateValue(){
-    this.onChange(this.interestList.values());
+    this.onChange(Array.from(this.interestList));
     this.onTouched();
   }
 

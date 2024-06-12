@@ -1,5 +1,5 @@
 import { Component, forwardRef, OnInit } from '@angular/core';
-import { ControlValueAccessor, FormArray, FormControl, FormGroup, NG_VALUE_ACCESSOR, Validators } from '@angular/forms';
+import { AbstractControl, ControlValueAccessor, FormArray, FormControl, FormGroup, NG_VALIDATORS, NG_VALUE_ACCESSOR, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-employment-history',
@@ -8,6 +8,11 @@ import { ControlValueAccessor, FormArray, FormControl, FormGroup, NG_VALUE_ACCES
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => EmploymentHistoryComponent),
+      multi: true
+    },
+    {
+      provide: NG_VALIDATORS,
       useExisting: forwardRef(() => EmploymentHistoryComponent),
       multi: true
     }
@@ -27,14 +32,28 @@ export class EmploymentHistoryComponent implements OnInit, ControlValueAccessor 
   }
 
   writeValue(obj: any): void {
-    // this.personalForm.setValue(obj.personalInfo, { emitEvent: false });
-    // this.additionalForm.setValue(obj.additionalInfo, { emitEvent: false });
+    if(obj.employment)
+      obj.employment.forEach((data: any)=>{
+        const empForm = this.employmentForm;
+        data.tasks.forEach((task:string)=>{
+          const taskArr = empForm.get('tasks') as FormArray;
+          taskArr.push(new FormControl(task));
+        })
+        empForm.patchValue(data, { emitEvent: false });
+        this.empArr.push(empForm, { emitEvent: false });
+      })
   }
 
-  updateValue(){
-    if(this.primaryForm.valid){
-      this.onChange(this.primaryForm.value);
+  validate() {
+    const isNotValid = !(this.primaryForm.valid);
+    return isNotValid && {
+      invalid: true
     }
+  }
+
+
+  updateValue(){
+    this.onChange(this.primaryForm.value);
     this.onTouched();
     
   }
@@ -48,7 +67,8 @@ export class EmploymentHistoryComponent implements OnInit, ControlValueAccessor 
       role: new FormControl('',[Validators.required]),
       organization: new FormControl('',[Validators.required]),
       startDate: new FormControl('',[Validators.required]),
-      endDate: new FormControl('')
+      endDate: new FormControl(''),
+      tasks: new FormArray([])
     })
 
   } 
@@ -63,17 +83,33 @@ export class EmploymentHistoryComponent implements OnInit, ControlValueAccessor 
     return this.primaryForm.controls["employment"] as FormArray;
   }
 
-  formGrp(emp: any){
-    return emp as FormGroup;
-  }
-
   addEmployment(){
-    this.empArr.push(this.employmentForm);
+    const empFrm = this.employmentForm;
+    const taskArr = empFrm.get('tasks') as FormArray;
+    taskArr.push(new FormControl(''));
+    this.empArr.push(empFrm);
 
   }
   removeEmployment(index: number){
     this.empArr.removeAt(index);
 
+  }
+
+
+  addTask(emp: AbstractControl, e:Event){
+    e.stopPropagation();
+    const taskArr = emp.get('tasks') as FormArray;
+    taskArr.push(new FormControl(''));   
+  }
+
+  clear(emp: AbstractControl, idx: number, e:Event){
+    if(idx > 0){
+      const taskArr = emp.get('tasks') as FormArray;
+      taskArr.removeAt(idx);
+
+    }
+    
+    
   }
 
 }

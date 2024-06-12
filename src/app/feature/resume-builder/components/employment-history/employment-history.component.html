@@ -9,30 +9,37 @@
                     <mat-icon>clear</mat-icon>
                 </button>
             </mat-card-header>
-            <div class="form-container" [formGroup]="formGrp(emp)">
-                <mat-form-field appearance="outline">
-                    <mat-label>Job Description</mat-label>
-                    <input matInput formControlName="role">
-                </mat-form-field>
-                <mat-form-field appearance="outline">
-                    <mat-label>Employment Organization</mat-label>
-                    <input matInput formControlName="organization">
-                </mat-form-field>
-                <mat-form-field appearance="outline">
-                    <mat-label>Start Date</mat-label>
-                    <input matInput [matDatepicker]="sDatePicker" formControlName="startDate">
-                    <mat-datepicker-toggle matSuffix [for]="sDatePicker"></mat-datepicker-toggle>
-                    <mat-datepicker #sDatePicker></mat-datepicker>
-                </mat-form-field>
-                <mat-form-field appearance="outline">
-                    <mat-label>End Date</mat-label>
-                    <input matInput [matDatepicker]="eDatePicker" formControlName="endDate">
-                    <mat-datepicker-toggle matSuffix [for]="eDatePicker"></mat-datepicker-toggle>
-                    <mat-datepicker #eDatePicker></mat-datepicker>
-                </mat-form-field>
+            <div [formGroup]="emp| convertControl: 'FormGroup'">
+                <div class="form-container">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Job Description</mat-label>
+                        <input matInput formControlName="role">
+                    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Organization</mat-label>
+                        <input matInput formControlName="organization">
+                    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Start Date</mat-label>
+                        <input matInput [matDatepicker]="sDatePicker" formControlName="startDate">
+                        <mat-datepicker-toggle matSuffix [for]="sDatePicker"></mat-datepicker-toggle>
+                        <mat-datepicker #sDatePicker></mat-datepicker>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                        <mat-label>End Date</mat-label>
+                        <input matInput [matDatepicker]="eDatePicker" formControlName="endDate">
+                        <mat-datepicker-toggle matSuffix [for]="eDatePicker"></mat-datepicker-toggle>
+                        <mat-datepicker #eDatePicker></mat-datepicker>
+                    </mat-form-field>
+                </div>
+                <h3>Tasks/Achivements</h3>
+                <div formArrayName="tasks" class="emp--task">
+                    <mat-form-field appearance="legacy" *ngFor="let task  of (emp|convertControl: 'FormArray').get('tasks').controls; let j=index">
+                        <input matInput [formControl]="task | convertControl: 'FormControl'" (keyup.enter)="addTask(emp, $event)" (keyup.delete)="clear(emp, j, $event)" (keyup.backspace)="clear(emp, j, $event)">
+                    </mat-form-field>
+                </div>
             </div>
             </mat-card>
-
     </div>
     <br/>
     <div class="footer">

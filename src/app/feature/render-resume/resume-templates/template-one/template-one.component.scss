@@ -1,0 +1,112 @@
+
+$theme-color : rgb(119, 102, 85);
+
+
+.resume--container{
+
+        width: 210mm;
+        min-height: 297mm;
+        border: 1px #D3D3D3 solid;
+        border-radius: 5px;
+        background: white;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        display: flex;
+    
+    .left--panel{
+        background-color: $theme-color ;
+        width: 280px;
+        padding: 30px;
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+        color: white;
+
+        #contact{
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        
+            .contact--item{
+                display: flex;
+                align-items: center;
+                gap: 15px;
+            }
+        
+        }
+
+       
+
+        .bd--top{
+            border-top: 2px solid white;
+        }
+        p{
+            color: white;
+        }
+
+        img{
+            background-color: white;
+            width: 100%;
+            aspect-ratio: 1;
+            border-radius: 3px;
+        }
+
+
+
+    }
+
+    .right--panel{
+        width: 100%;
+        padding: 30px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        gap: 30px;
+        color: rgb(63, 63, 62);
+
+        .name{
+            display: flex;
+            justify-content: flex-start;
+            font-size: 35px;
+            font-weight: bold;
+            color: $theme-color ;
+            margin: 25px 0;
+        }
+
+        #experience{
+            .employment{
+                margin-bottom: 20px;;
+                .employment--title{
+                    display: flex;
+                    gap: 10px;
+                }
+            }
+        }
+
+        .bd--top{
+            border-top: 1px solid rgb(184, 183, 183);
+        }
+    }
+
+    ul{
+        margin: 0;
+        padding: 0 0 0 20px;
+    }
+
+    .subtitle{
+        font-size: 15px;
+        font-weight: bold;
+        padding: 8px 0;
+
+        ::before{
+            content: ">>"
+        }
+
+    }
+
+}
+
+
+
+
+
+

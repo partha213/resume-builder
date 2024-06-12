@@ -2,6 +2,9 @@
 <mat-toolbar >
     <img src="../../../../assets/resume builder.png" height="40px">
     <span>
-      <h2>RESUMED</h2>
+      <h2 routerLink="/">RESUMED</h2>
     </span>
+    <span class="spacer"></span>
+      <button mat-stroked-button color="primary" *ngIf="_router.url != '/'" routerLink="/">Update Resume</button>
+      <button mat-stroked-button color="primary" *ngIf="_router.url != '/view-resume'" routerLink="/view-resume">Preview Resume</button>
 </mat-toolbar>

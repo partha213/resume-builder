@@ -32,8 +32,14 @@ export class PersonalDetailsComponent implements OnInit, ControlValueAccessor {
   }
 
   writeValue(obj: any): void {
-    // this.personalForm.setValue(obj.personalInfo, { emitEvent: false });
-    // this.additionalForm.setValue(obj.additionalInfo, { emitEvent: false });
+    if(obj.personalInfo){
+      this.personalForm.setValue(obj.personalInfo, { emitEvent: false });
+    }
+    if(obj.additionalInfo){
+      this.additionalForm.setValue(obj.additionalInfo, { emitEvent: false });
+    }
+    
+   
   }
 
   validate() {

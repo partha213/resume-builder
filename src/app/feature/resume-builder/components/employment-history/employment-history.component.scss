@@ -10,5 +10,11 @@
 .footer{
     display: flex;
     justify-content: flex-start;
+}
+
+.emp--task{
+    display: flex;
+    flex-direction: column;
+    width: 80%;
 
 }

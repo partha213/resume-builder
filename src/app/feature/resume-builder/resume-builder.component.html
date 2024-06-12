@@ -31,7 +31,13 @@
                 </div>
             </mat-step>
             <mat-step [stepControl]="this.resumeForm.controls.employmentHistory">
-                <ng-template matStepLabel>Employment History</ng-template>
+                <ng-template matStepLabel>
+                    
+                    <div class="label">
+                        <span>Employment History</span> 
+                        <mat-icon *ngIf="this.resumeForm.controls.employmentHistory.valid">check_circle</mat-icon>
+                    </div>
+                </ng-template>
                 <app-employment-history formControlName="employmentHistory"></app-employment-history>
                 <br/>
                 <div class="step-action">
@@ -39,23 +45,22 @@
                     <button  mat-raised-button color="primary" matStepperNext>Next</button>
                 </div>
             </mat-step>
-            <mat-step [stepControl]="this.resumeForm.controls.personalInterest">
-                <ng-template matStepLabel>Personal Interest</ng-template>
+            <!-- <mat-step [stepControl]="this.resumeForm.controls.personalInterest">
+                <ng-template matStepLabel>
+                    <div class="label">
+                        <span>Personal Interest</span> 
+                        <mat-icon *ngIf="this.resumeForm.controls.personalInterest.valid">check_circle</mat-icon>
+                    </div>
+                </ng-template>
                 <app-personal-interest formControlName="personalInterest"></app-personal-interest>
                 <br/>
                 <div class="step-action">
                     <button  mat-raised-button matStepperPrevious>Back</button>
-                    <button  mat-raised-button color="primary" matStepperNext>Next</button>
+                    <button  mat-raised-button color="primary" routerLink="/view-resume">Generate Resume</button>
                 </div>
-            </mat-step>  
+            </mat-step>   -->
         </mat-stepper>
-
     </form>
     
 </div>
-<br/>
-<section class="example-section">
-    <mat-checkbox class="checkbox-margin">Awards & Recognition</mat-checkbox>
-    <mat-checkbox class="checkbox-margin">Education</mat-checkbox>
-</section>
 

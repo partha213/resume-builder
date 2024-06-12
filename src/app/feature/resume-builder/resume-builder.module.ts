@@ -19,6 +19,7 @@ import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import {MatChipsModule} from '@angular/material/chips';
 import {MatStepperModule} from '@angular/material/stepper';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import {MatStepperModule} from '@angular/material/stepper';
     FormsModule,
     ReactiveFormsModule,
     MatChipsModule,
-    MatStepperModule
+    MatStepperModule,
+    SharedModule
   ]
 })
 export class ResumeBuilderModule { }

@@ -19,6 +19,11 @@ export class ResumeBuilderComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+
+    const resumeData = localStorage.getItem('resumeData');
+    if(resumeData)
+      this.resumeForm.patchValue(JSON.parse(resumeData))
+
     this.resumeForm.valueChanges.pipe(debounceTime(1000)).subscribe((data)=>{
       localStorage.setItem('resumeData',JSON.stringify(data));
       console.log(localStorage.getItem('resumeData'));

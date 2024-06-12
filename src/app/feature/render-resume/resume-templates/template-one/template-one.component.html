@@ -1,0 +1,75 @@
+<div class="resume--container">
+    <div class="left--panel">
+
+        <section id="avatar">
+            <img>
+        </section>
+        <section id="contact">
+            <div class="contact--item">
+                <mat-icon>location_on</mat-icon>
+                <strong>{{resumeData.personalDetails.personalInfo.city +', '+resumeData.personalDetails.personalInfo.country}}</strong>
+            </div>
+            <div class="contact--item">
+                <mat-icon>phone</mat-icon>
+                <strong>{{resumeData.personalDetails.personalInfo.phone}}</strong>
+            </div>
+            <div class="contact--item">
+                <mat-icon>email</mat-icon>
+                <strong>{{resumeData.personalDetails.personalInfo.email}}</strong>
+            </div> 
+        </section>
+        <section id="summary" class="bd--top">
+            <div class="subtitle">SUMMARY</div>
+            <p>{{resumeData.professionalSummary.profSummary}}</p>
+        </section>
+        <section id="summary" class="bd--top">
+            <div class="subtitle">PERSONAL INTEREST</div>
+            <ul>
+                <li *ngFor="let interest of resumeData.personalInterest">{{interest}}</li>
+            </ul>
+        </section>
+
+    </div>
+    <div class="right--panel">
+        <section>
+            <div class="name">{{resumeData.personalDetails.personalInfo.firstName +' '+resumeData.personalDetails.personalInfo.lastName}} </div>
+        </section>
+        <section id="skills"class="bd--top">
+            <div class="subtitle">SKILLS</div>
+            <mat-chip-list>
+                <mat-chip> Javascript </mat-chip>
+                <mat-chip> Angular </mat-chip>
+                <mat-chip> Typescript </mat-chip>
+                <mat-chip> HTML </mat-chip>
+                <mat-chip> SASS </mat-chip>
+                <mat-chip> Unix </mat-chip>
+                <mat-chip> Unix Shell Scrpting </mat-chip>
+            </mat-chip-list>
+        </section>
+        <section id="experience"class="bd--top">
+            <div class="subtitle"> WORK EXPERIENCE</div>
+            <div *ngFor="let employment of resumeData.employmentHistory.employment" class="employment">
+                <div class="employment--duration">
+                    <small>{{employment.startDate | date : 'MMM YYYY' }}</small>
+                    <small>{{' - '}}</small> 
+                    <small>{{employment.endDate| date : 'MMM YYYY'}}</small>
+                </div>
+                <div class="employment--title">
+                    <div><strong>{{employment.role}}</strong></div>
+                    <div>|</div>
+                    <div>{{employment.organization}}</div>
+                </div>
+                <div class="employment--details">
+                    <ul>
+                        <li>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Similique veniam tenetur voluptas accusantium dolorum facilis exercitationem reiciendis nihil illum eum.</li>
+                        <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni, architecto!</li>
+                        <li>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quisquam, fugiat dolores reiciendis officiis, quod vero placeat doloribus esse, nemo culpa laboriosam illo quis! Repudiandae tempora aliquam ipsum delectus sapiente quas?</li>
+
+                    </ul>
+
+                </div>
+            </div>
+           
+        </section>
+    </div>
+</div>
