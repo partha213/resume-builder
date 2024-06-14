@@ -13,10 +13,13 @@ export class TemplateOneComponent implements OnInit {
   ngOnInit(): void {
     const data = localStorage.getItem('resumeData');
     if(data){
-      this.resumeData = JSON.parse(data)
-      console.log(this.resumeData);
+      this.resumeData = JSON.parse(data);
     }
     
+  }
+
+  avaterImage(){
+    return localStorage.getItem('avaterImg');
   }
 
 }

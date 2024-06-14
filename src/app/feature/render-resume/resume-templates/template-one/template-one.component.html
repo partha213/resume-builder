@@ -2,7 +2,7 @@
     <div class="left--panel">
 
         <section id="avatar">
-            <img>
+            <img [src]="avaterImage()">
         </section>
         <section id="contact">
             <div class="contact--item">
@@ -37,13 +37,7 @@
         <section id="skills"class="bd--top">
             <div class="subtitle">SKILLS</div>
             <mat-chip-list>
-                <mat-chip> Javascript </mat-chip>
-                <mat-chip> Angular </mat-chip>
-                <mat-chip> Typescript </mat-chip>
-                <mat-chip> HTML </mat-chip>
-                <mat-chip> SASS </mat-chip>
-                <mat-chip> Unix </mat-chip>
-                <mat-chip> Unix Shell Scrpting </mat-chip>
+                <mat-chip *ngFor="let skill of resumeData.skillSummary">{{skill}} </mat-chip>
             </mat-chip-list>
         </section>
         <section id="experience"class="bd--top">
@@ -61,10 +55,10 @@
                 </div>
                 <div class="employment--details">
                     <ul>
-                        <li>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Similique veniam tenetur voluptas accusantium dolorum facilis exercitationem reiciendis nihil illum eum.</li>
-                        <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni, architecto!</li>
-                        <li>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quisquam, fugiat dolores reiciendis officiis, quod vero placeat doloribus esse, nemo culpa laboriosam illo quis! Repudiandae tempora aliquam ipsum delectus sapiente quas?</li>
-
+                        <ng-container *ngFor="let task of employment.tasks">
+                            <li *ngIf="task">{{task}}</li>
+                        </ng-container>
+                        
                     </ul>
 
                 </div>

@@ -85,6 +85,23 @@ export class PersonalDetailsComponent implements OnInit, ControlValueAccessor {
     this.additionalForm.valueChanges.subscribe((data)=>{this.updateValue()})
   }
 
-    
-  
+  onFileChange(event: any){
+    const file = event.target.files[0];
+    const reader = new FileReader();
+
+    reader.onloadend = () => {
+      const base64String = reader.result as string;
+      localStorage.setItem('avaterImg', base64String);
+    }
+
+    if(file){
+      reader.readAsDataURL(file);
+    }
+     
+  }
+
+  avaterImage(){
+    return localStorage.getItem('avaterImg');
+  }
+ 
 }

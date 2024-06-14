@@ -1,5 +1,6 @@
-import { Component, forwardRef, OnInit } from '@angular/core';
+import { Component, ElementRef, forwardRef, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { AbstractControl, ControlValueAccessor, FormArray, FormControl, FormGroup, NG_VALIDATORS, NG_VALUE_ACCESSOR, Validators } from '@angular/forms';
+import { MatFormFieldControl } from '@angular/material/form-field';
 
 @Component({
   selector: 'app-employment-history',
@@ -90,26 +91,30 @@ export class EmploymentHistoryComponent implements OnInit, ControlValueAccessor 
     this.empArr.push(empFrm);
 
   }
+
   removeEmployment(index: number){
     this.empArr.removeAt(index);
 
   }
 
 
-  addTask(emp: AbstractControl, e:Event){
+  addTask(emp: AbstractControl, e:Event, empIdx: number, taskIdx: number){
     e.stopPropagation();
     const taskArr = emp.get('tasks') as FormArray;
-    taskArr.push(new FormControl(''));   
+    taskArr.insert(taskIdx+1 , new FormControl(''));  
+    setTimeout(()=>{
+      document.getElementById(empIdx+'_'+(taskIdx+1))?.focus()
+    },0) 
+    
   }
 
-  clear(emp: AbstractControl, idx: number, e:Event){
-    if(idx > 0){
+  clear(emp: AbstractControl,empIdx: number, taskIdx: number, e:any){
+    const inputVal = e.target?.value;
+    if((taskIdx > 0) && !(inputVal) ){
       const taskArr = emp.get('tasks') as FormArray;
-      taskArr.removeAt(idx);
-
+      taskArr.removeAt(taskIdx);
+      document.getElementById(empIdx+'_'+(taskIdx-1))?.focus();
     }
-    
-    
   }
 
 }

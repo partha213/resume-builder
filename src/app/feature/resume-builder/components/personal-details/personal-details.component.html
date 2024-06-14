@@ -47,6 +47,15 @@
                     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                     <mat-datepicker #picker></mat-datepicker>
                 </mat-form-field>
+                
             </form>
         </ng-container>
+        <br/>
+        <br/>
+        <h3>Profile Image</h3>
+
+            <input type="file" (change)="onFileChange($event)" accept="image/*">
+            <img [src]="avaterImage()" height="100px" width="100px">
+
+        
 </div>

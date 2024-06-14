@@ -1,4 +1,4 @@
-<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio sit praesentium odit voluptatum tenetur laborum inventore eveniet minus! Minima iure eligendi harum libero voluptatem inventore a eaque iste? Cupiditate, ad?</p>
+<p>List your relevant work history in reverse chronological order. Include job titles, company names, dates, and a concise description of your responsibilities and achievements</p>
 
 <div [formGroup]="primaryForm">
     <div formArrayName="employment">
@@ -34,9 +34,13 @@
                 </div>
                 <h3>Tasks/Achivements</h3>
                 <div formArrayName="tasks" class="emp--task">
-                    <mat-form-field appearance="legacy" *ngFor="let task  of (emp|convertControl: 'FormArray').get('tasks').controls; let j=index">
-                        <input matInput [formControl]="task | convertControl: 'FormControl'" (keyup.enter)="addTask(emp, $event)" (keyup.delete)="clear(emp, j, $event)" (keyup.backspace)="clear(emp, j, $event)">
-                    </mat-form-field>
+                    <ol>
+                        <li *ngFor="let task  of (emp|convertControl: 'FormArray').get('tasks').controls; let j=index">
+                            <mat-form-field appearance="legacy">
+                                <input [id]="i+'_'+j" matInput [formControl]="task | convertControl: 'FormControl'" (keyup.enter)="addTask(emp, $event, i,j)" (keyup.delete)="clear(emp,i, j, $event)" (keyup.backspace)="clear(emp, i, j, $event)">
+                            </mat-form-field>
+                        </li>
+                    </ol>
                 </div>
             </div>
             </mat-card>

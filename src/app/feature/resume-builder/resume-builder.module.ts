@@ -20,6 +20,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import {MatChipsModule} from '@angular/material/chips';
 import {MatStepperModule} from '@angular/material/stepper';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { SkillSummaryComponent } from './components/skill-summary/skill-summary.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { SharedModule } from 'src/app/shared/shared.module';
     PersonalDetailsComponent,
     ProfessionalSummaryComponent,
     EmploymentHistoryComponent,
-    PersonalInterestComponent
+    PersonalInterestComponent,
+    SkillSummaryComponent
   ],
   imports: [
     CommonModule,

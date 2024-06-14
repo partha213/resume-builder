@@ -17,7 +17,6 @@
             </mat-step>
             <mat-step [stepControl]="this.resumeForm.controls.professionalSummary">
                 <ng-template matStepLabel>
-                    
                     <div class="label">
                         <span>Professional Summary</span> 
                         <mat-icon *ngIf="this.resumeForm.controls.professionalSummary.valid">check_circle</mat-icon>
@@ -30,6 +29,20 @@
                     <button  mat-raised-button color="primary" matStepperNext>Next</button>
                 </div>
             </mat-step>
+            <mat-step [stepControl]="this.resumeForm.controls.skillSummary">
+                <ng-template matStepLabel>
+                    <div class="label">
+                        <span>Skills</span> 
+                        <mat-icon *ngIf="this.resumeForm.controls.skillSummary.valid">check_circle</mat-icon>
+                    </div>
+                </ng-template>
+                <app-skill-summary formControlName="skillSummary"></app-skill-summary>
+                <br/>
+                <div class="step-action">
+                    <button  mat-raised-button matStepperPrevious>Back</button>
+                    <button  mat-raised-button color="primary" matStepperNext>Next</button>
+                </div>
+            </mat-step>  
             <mat-step [stepControl]="this.resumeForm.controls.employmentHistory">
                 <ng-template matStepLabel>
                     
@@ -45,7 +58,7 @@
                     <button  mat-raised-button color="primary" matStepperNext>Next</button>
                 </div>
             </mat-step>
-            <!-- <mat-step [stepControl]="this.resumeForm.controls.personalInterest">
+            <mat-step [stepControl]="this.resumeForm.controls.personalInterest">
                 <ng-template matStepLabel>
                     <div class="label">
                         <span>Personal Interest</span> 
@@ -58,7 +71,7 @@
                     <button  mat-raised-button matStepperPrevious>Back</button>
                     <button  mat-raised-button color="primary" routerLink="/view-resume">Generate Resume</button>
                 </div>
-            </mat-step>   -->
+            </mat-step>  
         </mat-stepper>
     </form>
     

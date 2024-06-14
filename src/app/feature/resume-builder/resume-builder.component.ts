@@ -13,6 +13,7 @@ export class ResumeBuilderComponent implements OnInit {
   resumeForm = new FormGroup({
     personalDetails:  new FormControl(''),
     professionalSummary: new FormControl(''),
+    skillSummary: new FormControl(''),
     employmentHistory: new FormControl(''),
     personalInterest: new FormControl('')
   });
@@ -26,7 +27,6 @@ export class ResumeBuilderComponent implements OnInit {
 
     this.resumeForm.valueChanges.pipe(debounceTime(1000)).subscribe((data)=>{
       localStorage.setItem('resumeData',JSON.stringify(data));
-      console.log(localStorage.getItem('resumeData'));
     })
   }
 

@@ -1,0 +1,17 @@
+<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dignissimos quia quaerat pariatur a, eaque voluptatem voluptas. Nulla, fugit culpa inventore odit eum perferendis cupiditate nam cum quod quidem ipsa doloribus!</p>
+
+<mat-form-field appearance="outline">
+    <mat-label>Skill</mat-label>
+    <input  matInput [(ngModel)]="skill">
+    <button matSuffix mat-icon-button aria-label="Add" (click)="addSkill()">
+        <mat-icon>add</mat-icon>
+    </button>
+    <mat-hint>Add Skill</mat-hint>
+</mat-form-field>
+<br/>
+<mat-chip-list>
+    <mat-chip *ngFor="let skill of skillList.values()" color="primary" selected>
+            {{skill}}
+            <mat-icon (click)="removeSkill(skill)">close</mat-icon>
+    </mat-chip>
+</mat-chip-list>
