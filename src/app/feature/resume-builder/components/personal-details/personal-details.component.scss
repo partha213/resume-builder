@@ -1,0 +1,10 @@
+.avatar-container{
+    position: relative;
+    width: fit-content;
+}
+
+.avatar-container mat-icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+}

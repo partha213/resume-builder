@@ -2,27 +2,38 @@
     <div class="left--panel">
 
         <section id="avatar">
-            <img [src]="avaterImage()">
+            <img class="avatar-image" [src]="avatarImage()" *ngIf="avatarImage()">
         </section>
         <section id="contact">
-            <div class="contact--item">
+            <div class="contact--item" *ngIf="resumeData.personalDetails.personalInfo?.city || resumeData.personalDetails.personalInfo?.country">
                 <mat-icon>location_on</mat-icon>
-                <strong>{{resumeData.personalDetails.personalInfo.city +', '+resumeData.personalDetails.personalInfo.country}}</strong>
+                <strong *ngIf="resumeData.personalDetails.personalInfo.city">{{resumeData.personalDetails.personalInfo.country ? resumeData.personalDetails.personalInfo.city + ', '+resumeData.personalDetails.personalInfo.country: resumeData.personalDetails.personalInfo.city}}</strong>
+                <strong *ngIf="!resumeData.personalDetails.personalInfo.city && resumeData.personalDetails.personalInfo.country">{{resumeData.personalDetails.personalInfo.country}}</strong>
             </div>
-            <div class="contact--item">
+            <div class="contact--item" *ngIf="resumeData.personalDetails.personalInfo?.phone">
                 <mat-icon>phone</mat-icon>
                 <strong>{{resumeData.personalDetails.personalInfo.phone}}</strong>
             </div>
-            <div class="contact--item">
+            <div class="contact--item" *ngIf="resumeData.personalDetails.personalInfo?.email">
                 <mat-icon>email</mat-icon>
                 <strong>{{resumeData.personalDetails.personalInfo.email}}</strong>
             </div> 
+            <div class="contact--item" *ngIf="resumeData.personalDetails.additionalInfo?.dateOfBirth">
+                <mat-icon>cake</mat-icon>
+                <strong>{{resumeData.personalDetails.additionalInfo?.dateOfBirth| date: 'd MMMM, y'}}</strong>
+            </div> 
         </section>
-        <section id="summary" class="bd--top">
+        <section id="summary" class="bd--top" *ngIf="resumeData.personalDetails.additionalInfo?.address">
+            <div class="subtitle">ADDRESS</div>
+            <p>{{resumeData.personalDetails.additionalInfo?.address}}</p>
+            <p *ngIf="resumeData.personalDetails.additionalInfo?.address">{{"PIN - " + resumeData.personalDetails.additionalInfo?.pin}}</p>
+
+        </section>
+        <section id="summary" class="bd--top" *ngIf="resumeData.professionalSummary.profSummary">
             <div class="subtitle">SUMMARY</div>
             <p>{{resumeData.professionalSummary.profSummary}}</p>
         </section>
-        <section id="summary" class="bd--top">
+        <section id="summary" class="bd--top" *ngIf="resumeData.personalInterest.length">
             <div class="subtitle">PERSONAL INTEREST</div>
             <ul>
                 <li *ngFor="let interest of resumeData.personalInterest">{{interest}}</li>
@@ -32,15 +43,15 @@
     </div>
     <div class="right--panel">
         <section>
-            <div class="name">{{resumeData.personalDetails.personalInfo.firstName +' '+resumeData.personalDetails.personalInfo.lastName}} </div>
+            <div class="name" *ngIf="resumeData.personalDetails.personalInfo?.firstName || resumeData.personalDetails.personalInfo?.lastName">{{resumeData.personalDetails.personalInfo?.firstName +' '+resumeData.personalDetails.personalInfo?.lastName}} </div>
         </section>
-        <section id="skills"class="bd--top">
+        <section id="skills"class="bd--top" *ngIf="resumeData.skillSummary.length">
             <div class="subtitle">SKILLS</div>
             <mat-chip-list>
                 <mat-chip *ngFor="let skill of resumeData.skillSummary">{{skill}} </mat-chip>
             </mat-chip-list>
         </section>
-        <section id="experience"class="bd--top">
+        <section id="experience"class="bd--top" *ngIf="resumeData.employmentHistory.employment">
             <div class="subtitle"> WORK EXPERIENCE</div>
             <div *ngFor="let employment of resumeData.employmentHistory.employment" class="employment">
                 <div class="employment--duration">

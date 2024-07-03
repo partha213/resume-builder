@@ -1,6 +1,6 @@
 <p>List your relevant work history in reverse chronological order. Include job titles, company names, dates, and a concise description of your responsibilities and achievements</p>
 
-<div [formGroup]="primaryForm">
+<div [formGroup]="primaryForm" (keydown.enter)="$event.preventDefault()">
     <div formArrayName="employment">
 
         <mat-card *ngFor="let emp of empArr.controls; let i=index">
@@ -31,7 +31,15 @@
                         <mat-datepicker-toggle matSuffix [for]="eDatePicker"></mat-datepicker-toggle>
                         <mat-datepicker #eDatePicker></mat-datepicker>
                     </mat-form-field>
+                    <div></div>
+                    <div>
+                        <mat-checkbox formControlName="currentRole" (change)="currentRoleAction(i, $event)">
+                            This is my current role
+                        </mat-checkbox>
+                    </div>
+                    
                 </div>
+                <br/>
                 <h3>Tasks/Achivements</h3>
                 <div formArrayName="tasks" class="emp--task">
                     <ol>

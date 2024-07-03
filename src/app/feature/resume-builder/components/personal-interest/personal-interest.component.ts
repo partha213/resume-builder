@@ -37,10 +37,9 @@ export class PersonalInterestComponent implements OnInit, ControlValueAccessor {
   }
 
   writeValue(obj: string[]): void {
-    //this.interestList = new Set(obj);
-
     this.interestList.clear();
-    obj.forEach(item => this.interestList.add(item));
+    if(obj.length)
+      obj.forEach(item => this.interestList.add(item));
   }
 
   validate() {

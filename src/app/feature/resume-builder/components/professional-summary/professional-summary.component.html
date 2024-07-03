@@ -4,5 +4,6 @@
         <mat-form-field appearance="outline" style="grid-column-start: span 2;">
             <mat-label>Professional summary</mat-label>
             <textarea matInput formControlName="profSummary"></textarea>
+            <mat-error *ngIf="profSummaryForm.get('profSummary')!.hasError('required')">Please enter professional summary</mat-error>
         </mat-form-field>  
 </form>

@@ -18,7 +18,7 @@ export class TemplateOneComponent implements OnInit {
     
   }
 
-  avaterImage(){
+  avatarImage(){
     return localStorage.getItem('avaterImg');
   }
 

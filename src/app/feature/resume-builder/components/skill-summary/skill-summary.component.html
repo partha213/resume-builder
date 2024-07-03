@@ -3,6 +3,7 @@
 <mat-form-field appearance="outline">
     <mat-label>Skill</mat-label>
     <input  matInput [(ngModel)]="skill">
+    
     <button matSuffix mat-icon-button aria-label="Add" (click)="addSkill()">
         <mat-icon>add</mat-icon>
     </button>
@@ -15,3 +16,5 @@
             <mat-icon (click)="removeSkill(skill)">close</mat-icon>
     </mat-chip>
 </mat-chip-list>
+<br/>
+<p *ngIf="skillList.size == 0">Please enter atlease one Skill to proceed forward</p>

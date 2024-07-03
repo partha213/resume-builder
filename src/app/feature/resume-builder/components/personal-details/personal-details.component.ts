@@ -33,10 +33,10 @@ export class PersonalDetailsComponent implements OnInit, ControlValueAccessor {
 
   writeValue(obj: any): void {
     if(obj.personalInfo){
-      this.personalForm.setValue(obj.personalInfo, { emitEvent: false });
+      this.personalForm.patchValue(obj.personalInfo, { emitEvent: false });
     }
     if(obj.additionalInfo){
-      this.additionalForm.setValue(obj.additionalInfo, { emitEvent: false });
+      this.additionalForm.patchValue(obj.additionalInfo, { emitEvent: false });
     }
     
    
@@ -51,25 +51,25 @@ export class PersonalDetailsComponent implements OnInit, ControlValueAccessor {
 
   updateValue(){
     const val: any = {};
-    if(this.personalForm.valid){
+   
       val.personalInfo = this.personalForm.value;
-    }
-    if(this.additionalForm.valid && this.additionalData){
       val.additionalInfo = this.additionalForm.value;
-    }
-    this.onChange(val);
-    this.onTouched();
+      this.onChange(val);
+      this.onTouched();
   }
   
 
-  additionalData = false;
+  get additionalData(){
+    return this.personalForm.get('additionalData')!.value
+  } 
   personalForm = new FormGroup({
     firstName: new FormControl('',[Validators.required]),
     lastName: new FormControl('',[Validators.required]),
-    email: new FormControl('',[Validators.required]),
-    phone: new FormControl('',),
+    email: new FormControl('',[Validators.required, Validators.email]),
+    phone: new FormControl('',[Validators.pattern("[1-9][0-9]{9}")]),
     city: new FormControl('',),
     country: new FormControl('',),
+    additionalData: new FormControl(false,)
   });
 
   additionalForm = new FormGroup({
@@ -100,8 +100,13 @@ export class PersonalDetailsComponent implements OnInit, ControlValueAccessor {
      
   }
 
-  avaterImage(){
+  get avaterImage(){
     return localStorage.getItem('avaterImg');
+  }
+
+  removeAvatarImg(){
+    localStorage.removeItem('avaterImg');
+
   }
  
 }

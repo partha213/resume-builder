@@ -56,7 +56,6 @@ export class EmploymentHistoryComponent implements OnInit, ControlValueAccessor 
   updateValue(){
     this.onChange(this.primaryForm.value);
     this.onTouched();
-    
   }
 
   primaryForm = new FormGroup({
@@ -68,7 +67,8 @@ export class EmploymentHistoryComponent implements OnInit, ControlValueAccessor 
       role: new FormControl('',[Validators.required]),
       organization: new FormControl('',[Validators.required]),
       startDate: new FormControl('',[Validators.required]),
-      endDate: new FormControl(''),
+      endDate: new FormControl('',[Validators.required]),
+      currentRole: new FormControl(false),
       tasks: new FormArray([])
     })
 
@@ -99,7 +99,6 @@ export class EmploymentHistoryComponent implements OnInit, ControlValueAccessor 
 
 
   addTask(emp: AbstractControl, e:Event, empIdx: number, taskIdx: number){
-    e.stopPropagation();
     const taskArr = emp.get('tasks') as FormArray;
     taskArr.insert(taskIdx+1 , new FormControl(''));  
     setTimeout(()=>{
@@ -115,6 +114,23 @@ export class EmploymentHistoryComponent implements OnInit, ControlValueAccessor 
       taskArr.removeAt(taskIdx);
       document.getElementById(empIdx+'_'+(taskIdx-1))?.focus();
     }
+  }
+
+  currentRoleAction(idx: number, event: any){
+    const endDateControl: FormControl = this.empArr.controls[idx].get('endDate') as FormControl;
+    if(event.checked){
+      endDateControl.disable();
+      endDateControl.setValue('');
+      endDateControl.removeValidators(Validators.required);
+    }
+    else{
+      endDateControl.enable();
+      endDateControl.addValidators(Validators.required); 
+    }
+
+    endDateControl.updateValueAndValidity();
+    
+
   }
 
 }
