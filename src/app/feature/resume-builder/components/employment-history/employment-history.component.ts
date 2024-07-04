@@ -36,6 +36,11 @@ export class EmploymentHistoryComponent implements OnInit, ControlValueAccessor 
     if(obj.employment)
       obj.employment.forEach((data: any)=>{
         const empForm = this.employmentForm;
+        if(data.currentRole){
+          const endDateControl = empForm.get('endDate') as FormControl;
+          endDateControl.setValue('');
+          endDateControl.disable();
+        }
         data.tasks.forEach((task:string)=>{
           const taskArr = empForm.get('tasks') as FormArray;
           taskArr.push(new FormControl(task));
@@ -127,10 +132,7 @@ export class EmploymentHistoryComponent implements OnInit, ControlValueAccessor 
       endDateControl.enable();
       endDateControl.addValidators(Validators.required); 
     }
-
     endDateControl.updateValueAndValidity();
-    
-
   }
 
 }
