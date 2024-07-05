@@ -14,20 +14,24 @@
                     <mat-form-field appearance="outline">
                         <mat-label>Job Description</mat-label>
                         <input matInput formControlName="role">
+                        <mat-error>Job Description is required</mat-error>
                     </mat-form-field>
                     <mat-form-field appearance="outline">
                         <mat-label>Organization</mat-label>
                         <input matInput formControlName="organization">
+                        <mat-error>Organization details is required</mat-error>
                     </mat-form-field>
                     <mat-form-field appearance="outline">
                         <mat-label>Start Date</mat-label>
                         <input matInput [matDatepicker]="sDatePicker" formControlName="startDate">
+                        <mat-error>Start Date is required</mat-error>
                         <mat-datepicker-toggle matSuffix [for]="sDatePicker"></mat-datepicker-toggle>
                         <mat-datepicker #sDatePicker></mat-datepicker>
                     </mat-form-field>
                     <mat-form-field appearance="outline">
                         <mat-label>End Date</mat-label>
                         <input matInput [matDatepicker]="eDatePicker" formControlName="endDate">
+                        <mat-error>End Date is required</mat-error>
                         <mat-datepicker-toggle matSuffix [for]="eDatePicker"></mat-datepicker-toggle>
                         <mat-datepicker #eDatePicker></mat-datepicker>
                     </mat-form-field>
