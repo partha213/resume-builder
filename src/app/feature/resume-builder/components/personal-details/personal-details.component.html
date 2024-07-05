@@ -1,11 +1,10 @@
 <div>
-    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Doloremque deleniti quasi tempore quibusdam, eos suscipit sed sequi quidem nobis aliquam quisquam necessitatibus error ratione, perferendis magnam nam culpa vero libero iusto vel architecto. Inventore excepturi alias quos illo facere cumque esse laboriosam eos quod qui earum officia ullam provident id, cupiditate fuga natus? Ab sequi consequuntur, rerum soluta iusto magnam.</p>
+    <p>Provide personal details, such as name, phone number, email address etc. Make sure to validate the input to ensure accurate information.</p>
     <br/>
         <form class="form-container" [formGroup]=personalForm>
             <mat-form-field appearance="outline">
                 <mat-label>First Name</mat-label>
                 <input  matInput formControlName="firstName">
-                <mat-hint>Please enter First Name</mat-hint>
                 <mat-error *ngIf="personalForm.get('firstName')!.hasError('required')">First name is required</mat-error>
             </mat-form-field>
             <mat-form-field appearance="outline" >
