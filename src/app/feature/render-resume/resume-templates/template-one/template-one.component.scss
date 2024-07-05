@@ -47,7 +47,7 @@ $theme-color : rgb(119, 102, 85);
             background-color: white;
             width: 100%;
             aspect-ratio: 1;
-            border-radius: 5px;
+            border-radius: 3px;
         }
 
 
@@ -78,6 +78,7 @@ $theme-color : rgb(119, 102, 85);
                 .employment--title{
                     display: flex;
                     gap: 10px;
+                    color: $theme-color
                 }
             }
         }

@@ -19,6 +19,10 @@
                 <strong>{{resumeData.personalDetails.personalInfo.email}}</strong>
             </div> 
         </section>
+        <section id="summary" class="bd--top" *ngIf="resumeData.professionalSummary.profSummary">
+            <div class="subtitle">SUMMARY</div>
+            <p>{{resumeData.professionalSummary.profSummary}}</p>
+        </section>
         <ng-container *ngIf="resumeData.personalDetails.personalInfo.additionalData">       
             <section id="dob" class="bd--top" *ngIf="resumeData.personalDetails.additionalInfo?.dateOfBirth">
                 <div class="subtitle">DATE OF BIRTH</div>
@@ -34,10 +38,6 @@
                 <p *ngIf="resumeData.personalDetails.additionalInfo?.address">{{"PIN - " + resumeData.personalDetails.additionalInfo?.pin}}</p>
             </section>
         </ng-container>
-        <section id="summary" class="bd--top" *ngIf="resumeData.professionalSummary.profSummary">
-            <div class="subtitle">SUMMARY</div>
-            <p>{{resumeData.professionalSummary.profSummary}}</p>
-        </section>
         <section id="personalInterest" class="bd--top" *ngIf="resumeData.personalInterest.length">
             <div class="subtitle">PERSONAL INTEREST</div>
             <ul>
