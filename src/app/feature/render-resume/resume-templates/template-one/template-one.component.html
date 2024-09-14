@@ -1,84 +1,88 @@
-<div class="resume--container">
-    <div class="left--panel">
-
-        <section id="avatar">
-            <img class="avatar-image" [src]="avatarImage()" *ngIf="avatarImage()">
-        </section>
-        <section id="contact">
-            <div class="item" *ngIf="resumeData.personalDetails.personalInfo?.city || resumeData.personalDetails.personalInfo?.country">
-                <mat-icon>location_on</mat-icon>
-                <strong *ngIf="resumeData.personalDetails.personalInfo.city">{{resumeData.personalDetails.personalInfo.country ? resumeData.personalDetails.personalInfo.city + ', '+resumeData.personalDetails.personalInfo.country: resumeData.personalDetails.personalInfo.city}}</strong>
-                <strong *ngIf="!resumeData.personalDetails.personalInfo.city && resumeData.personalDetails.personalInfo.country">{{resumeData.personalDetails.personalInfo.country}}</strong>
-            </div>
-            <div class="item" *ngIf="resumeData.personalDetails.personalInfo?.phone">
-                <mat-icon>phone</mat-icon>
-                <strong>{{resumeData.personalDetails.personalInfo.phone}}</strong>
-            </div>
-            <div class="item" *ngIf="resumeData.personalDetails.personalInfo?.email">
-                <mat-icon>email</mat-icon>
-                <strong>{{resumeData.personalDetails.personalInfo.email}}</strong>
-            </div> 
-        </section>
-        <section id="summary" class="bd--top" *ngIf="resumeData.professionalSummary.profSummary">
-            <div class="subtitle">SUMMARY</div>
-            <p>{{resumeData.professionalSummary.profSummary}}</p>
-        </section>
-        <ng-container *ngIf="resumeData.personalDetails.personalInfo.additionalData">       
-            <section id="dob" class="bd--top" *ngIf="resumeData.personalDetails.additionalInfo?.dateOfBirth">
-                <div class="subtitle">DATE OF BIRTH</div>
-                <div class="item">
-                    <mat-icon>cake</mat-icon>
-                    <strong>{{resumeData.personalDetails.additionalInfo?.dateOfBirth| date: 'd MMMM, y'}}</strong>
+<div class="resume--wrapper" >
+    <div class="resume--container" id="resume-canvas">
+        <div class="left--panel">
+    
+            <section id="avatar">
+                <img class="avatar-image" [src]="avatarImage()" *ngIf="avatarImage()">
+            </section>
+            <section id="contact">
+                <div class="item" *ngIf="resumeData.personalDetails.personalInfo?.city || resumeData.personalDetails.personalInfo?.country">
+                    <mat-icon>location_on</mat-icon>
+                    <strong *ngIf="resumeData.personalDetails.personalInfo.city">{{resumeData.personalDetails.personalInfo.country ? resumeData.personalDetails.personalInfo.city + ', '+resumeData.personalDetails.personalInfo.country: resumeData.personalDetails.personalInfo.city}}</strong>
+                    <strong *ngIf="!resumeData.personalDetails.personalInfo.city && resumeData.personalDetails.personalInfo.country">{{resumeData.personalDetails.personalInfo.country}}</strong>
+                </div>
+                <div class="item" *ngIf="resumeData.personalDetails.personalInfo?.phone">
+                    <mat-icon>phone</mat-icon>
+                    <strong>{{resumeData.personalDetails.personalInfo.phone}}</strong>
+                </div>
+                <div class="item" *ngIf="resumeData.personalDetails.personalInfo?.email">
+                    <mat-icon>email</mat-icon>
+                    <strong>{{resumeData.personalDetails.personalInfo.email}}</strong>
                 </div> 
-
             </section>
-            <section id="address" class="bd--top" *ngIf="resumeData.personalDetails.additionalInfo?.address">
-                <div class="subtitle">ADDRESS</div>
-                <p>{{resumeData.personalDetails.additionalInfo?.address}}</p>
-                <p *ngIf="resumeData.personalDetails.additionalInfo?.address">{{"PIN - " + resumeData.personalDetails.additionalInfo?.pin}}</p>
+            <section id="summary" class="bd--top" *ngIf="resumeData.professionalSummary.profSummary">
+                <div class="subtitle">SUMMARY</div>
+                <p>{{resumeData.professionalSummary.profSummary}}</p>
             </section>
-        </ng-container>
-        <section id="personalInterest" class="bd--top" *ngIf="resumeData.personalInterest.length">
-            <div class="subtitle">PERSONAL INTEREST</div>
-            <ul>
-                <li *ngFor="let interest of resumeData.personalInterest">{{interest}}</li>
-            </ul>
-        </section>
+            <ng-container *ngIf="resumeData.personalDetails.personalInfo.additionalData">       
+                <section id="dob" class="bd--top" *ngIf="resumeData.personalDetails.additionalInfo?.dateOfBirth">
+                    <div class="subtitle">DATE OF BIRTH</div>
+                    <div class="item">
+                        <mat-icon>cake</mat-icon>
+                        <strong>{{resumeData.personalDetails.additionalInfo?.dateOfBirth| date: 'd MMMM, y'}}</strong>
+                    </div> 
+    
+                </section>
+                <section id="address" class="bd--top" *ngIf="resumeData.personalDetails.additionalInfo?.address">
+                    <div class="subtitle">ADDRESS</div>
+                    <p>{{resumeData.personalDetails.additionalInfo?.address}}</p>
+                    <p *ngIf="resumeData.personalDetails.additionalInfo?.address">{{"PIN - " + resumeData.personalDetails.additionalInfo?.pin}}</p>
+                </section>
+            </ng-container>
+            <section id="personalInterest" class="bd--top" *ngIf="resumeData.personalInterest.length">
+                <div class="subtitle">PERSONAL INTEREST</div>
+                <ul>
+                    <li *ngFor="let interest of resumeData.personalInterest">{{interest}}</li>
+                </ul>
+            </section>
+    
+        </div>
+        <div class="right--panel">
+            <section>
+                <div class="name" *ngIf="resumeData.personalDetails.personalInfo?.firstName || resumeData.personalDetails.personalInfo?.lastName">{{resumeData.personalDetails.personalInfo?.firstName +' '+resumeData.personalDetails.personalInfo?.lastName}} </div>
+            </section>
+            <section id="skills"class="bd--top" *ngIf="resumeData.skillSummary.length">
+                <div class="subtitle">SKILLS</div>
+                <mat-chip-list>
+                    <mat-chip *ngFor="let skill of resumeData.skillSummary">{{skill}} </mat-chip>
+                </mat-chip-list>
+            </section>
+            <section id="experience"class="bd--top" *ngIf="resumeData.employmentHistory.employment">
+                <div class="subtitle"> WORK EXPERIENCE</div>
+                <div *ngFor="let employment of resumeData.employmentHistory.employment" class="employment">
+                    <div class="employment--duration">
+                        <small>{{employment.startDate | date : 'MMM YYYY' }}</small>
+                        <small>{{' - '}}</small> 
+                        <small *ngIf="employment.currentRole">Present</small>
+                        <small *ngIf="!employment.currentRole">{{employment.endDate| date : 'MMM YYYY'}}</small>
+                    </div>
+                    <div class="employment--title">
+                        <div><strong>{{employment.role}}</strong></div>
+                        <div>|</div>
+                        <div>{{employment.organization}}</div>
+                    </div>
+                    <div class="employment--details">
+                        <ul>
+                            <ng-container *ngFor="let task of employment.tasks">
+                                <li *ngIf="task">{{task}}</li>
+                            </ng-container>         
+                        </ul>
+                    </div>
+                </div>
+               
+            </section>
+        </div>
+    </div>
 
-    </div>
-    <div class="right--panel">
-        <section>
-            <div class="name" *ngIf="resumeData.personalDetails.personalInfo?.firstName || resumeData.personalDetails.personalInfo?.lastName">{{resumeData.personalDetails.personalInfo?.firstName +' '+resumeData.personalDetails.personalInfo?.lastName}} </div>
-        </section>
-        <section id="skills"class="bd--top" *ngIf="resumeData.skillSummary.length">
-            <div class="subtitle">SKILLS</div>
-            <mat-chip-list>
-                <mat-chip *ngFor="let skill of resumeData.skillSummary">{{skill}} </mat-chip>
-            </mat-chip-list>
-        </section>
-        <section id="experience"class="bd--top" *ngIf="resumeData.employmentHistory.employment">
-            <div class="subtitle"> WORK EXPERIENCE</div>
-            <div *ngFor="let employment of resumeData.employmentHistory.employment" class="employment">
-                <div class="employment--duration">
-                    <small>{{employment.startDate | date : 'MMM YYYY' }}</small>
-                    <small>{{' - '}}</small> 
-                    <small *ngIf="employment.currentRole">Present</small>
-                    <small *ngIf="!employment.currentRole">{{employment.endDate| date : 'MMM YYYY'}}</small>
-                </div>
-                <div class="employment--title">
-                    <div><strong>{{employment.role}}</strong></div>
-                    <div>|</div>
-                    <div>{{employment.organization}}</div>
-                </div>
-                <div class="employment--details">
-                    <ul>
-                        <ng-container *ngFor="let task of employment.tasks">
-                            <li *ngIf="task">{{task}}</li>
-                        </ng-container>         
-                    </ul>
-                </div>
-            </div>
-           
-        </section>
-    </div>
 </div>
+

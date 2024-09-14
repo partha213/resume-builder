@@ -5,6 +5,7 @@
       <h2 routerLink="/">RESUMED</h2>
     </span>
     <span class="spacer"></span>
-      <button mat-stroked-button color="primary" *ngIf="_router.url != '/'" routerLink="/">Update Resume</button>
+    <button mat-stroked-button color="primary" *ngIf="_router.url != '/'" routerLink="/">Edit Resume <mat-icon>edit</mat-icon></button>
+    <button mat-raised-button color="primary" *ngIf="_router.url != '/'" aria-label="Download" (click)="downloadResume()">Download <mat-icon>download</mat-icon></button>
       <!-- <button mat-stroked-button color="primary" *ngIf="_router.url != '/view-resume'" routerLink="/view-resume">Preview Resume</button> -->
 </mat-toolbar>
